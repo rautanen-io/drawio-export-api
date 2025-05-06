@@ -1,0 +1,19 @@
+services:
+  drawio_export_api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        ENV: development
+    volumes:
+      - .:/app
+    env_file: ./dev.env
+    ports:
+      - "443:443"
+      - "8000:8000"
+    entrypoint: >
+      poetry run uvicorn drawio_export_api.main:app
+      --host 0.0.0.0
+      --port 8000
+      --reload
+      --reload-dir /app/src

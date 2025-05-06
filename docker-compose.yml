@@ -1,0 +1,13 @@
+services:
+  drawio_export_api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        ENV: production
+    container_name: drawio-export-api
+    ports:
+      - "443:443"
+    environment:
+      PYTHONPATH: /app/src
+    env_file: ./prod.env

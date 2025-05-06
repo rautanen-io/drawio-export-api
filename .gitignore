@@ -1,0 +1,41 @@
+# Python
+*.pyc
+*.pyo
+*.pyd
+__pycache__
+*.pyo
+*.pyc
+*.pyd
+.Python
+env/
+venv/
+env.bak/
+venv.bak/
+.idea/
+*.db
+*.sqlite3
+
+# Poetry
+.poetry/
+# Docker
+*.log
+
+# VSCode
+.vscode/
+
+# Jupyter Notebooks
+.ipynb_checkpoints/
+
+# Pytest
+.cache
+*.cover
+*.hypothesis/
+
+# MacOS specific
+.DS_Store
+
+# Linux specific
+*~
+
+# Secrets
+*.pem
