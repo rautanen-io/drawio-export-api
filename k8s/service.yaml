@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: drawio-export-api
+spec:
+  selector:
+    app: drawio-export-api
+  ports:
+  - port: 443
+    targetPort: 443
+  type: ClusterIP

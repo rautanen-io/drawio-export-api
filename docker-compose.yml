@@ -11,3 +11,6 @@ services:
     environment:
       PYTHONPATH: /app/src
     env_file: ./prod.env
+    volumes:
+      - ./nginx/certs/fullchain.pem:/etc/nginx/certs/fullchain.pem
+      - ./nginx/certs/privkey.pem:/etc/nginx/certs/privkey.pem
