@@ -70,7 +70,7 @@ def convert_drawio_to_svg(
 
         # Make request
         response = requests.post(
-            url, files=files, headers=headers, verify=verify, timeout=60
+            url, files=files, headers=headers, verify=verify, timeout=360
         )
 
         response.raise_for_status()

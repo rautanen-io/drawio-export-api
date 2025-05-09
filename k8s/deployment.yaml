@@ -1,0 +1,50 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: drawio-export-api
+  labels:
+    app: drawio-export-api
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: drawio-export-api
+  template:
+    metadata:
+      labels:
+        app: drawio-export-api
+    spec:
+      containers:
+      - name: drawio-export-api
+        image: docker.io/hirvi0/drawio-export-api:v0.1.0
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 443
+        env:
+        - name: PYTHONPATH
+          value: /app/src
+        - name: DRAWIO_EXPORT_API_TOKEN
+          valueFrom:
+            secretKeyRef:
+              name: drawio-export-api-secrets
+              key: DRAWIO_EXPORT_API_TOKEN
+        volumeMounts:
+        - name: ssl-certs
+          mountPath: /etc/nginx/certs
+          readOnly: true
+        - name: nginx-config
+          mountPath: /etc/nginx/nginx.conf
+          subPath: nginx.conf
+        - name: supervisor-config
+          mountPath: /etc/supervisor/supervisord.conf
+          subPath: supervisord.conf
+      volumes:
+      - name: ssl-certs
+        secret:
+          secretName: drawio-export-api-certs
+      - name: nginx-config
+        configMap:
+          name: drawio-export-api-nginx-config
+      - name: supervisor-config
+        configMap:
+          name: drawio-export-api-supervisor-config
