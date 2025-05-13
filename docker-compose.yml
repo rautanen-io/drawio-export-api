@@ -14,3 +14,4 @@ services:
     volumes:
       - ./nginx/certs/fullchain.pem:/etc/nginx/certs/fullchain.pem
       - ./nginx/certs/privkey.pem:/etc/nginx/certs/privkey.pem
+      - ./supervisord.conf:/etc/supervisor/conf.d/supervisord.conf
