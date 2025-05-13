@@ -1,6 +1,6 @@
 [project]
 name = "drawio-export-api"
-version = "0.1.0"
+version = "0.1.1"
 description = "An API to convert Draw.io format images to SVG."
 authors = [
   { name = "Veikko Pankakoski", email = "veikko@rautanenyhtiot.fi" }
