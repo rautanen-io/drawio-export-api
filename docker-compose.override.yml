@@ -11,9 +11,13 @@ services:
     ports:
       - "443:443"
       - "8000:8000"
-    entrypoint: >
-      poetry run uvicorn drawio_export_api.main:app
-      --host 0.0.0.0
-      --port 8000
-      --reload
-      --reload-dir /app/src
+    entrypoint:
+      - sh
+      - -c
+      - |
+        rm -f /tmp/.X42-lock && \
+        exec poetry run uvicorn drawio_export_api.main:app \
+          --host 0.0.0.0 \
+          --port 8000 \
+          --reload \
+          --reload-dir /app/src
