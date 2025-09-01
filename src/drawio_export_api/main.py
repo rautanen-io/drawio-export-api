@@ -67,7 +67,12 @@ async def svg(_: str = Depends(get_token), file: UploadFile = File(...)):
             }
             return JSONResponse(content=error_message, status_code=400)
 
-        svg_file_path = os.path.join(tmp_dir, "image-Page-1.svg")
+        # Find the first SVG file in the temp directory
+        svg_files = [f for f in os.listdir(tmp_dir) if f.endswith(".svg")]
+        if not svg_files:
+            raise HTTPException(status_code=404, detail="No SVG file was generated")
+
+        svg_file_path = os.path.join(tmp_dir, svg_files[0])
         if not os.path.exists(svg_file_path):
             raise HTTPException(status_code=404, detail="File not found")
 
