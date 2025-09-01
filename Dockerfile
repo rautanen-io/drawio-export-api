@@ -1,4 +1,4 @@
-FROM rlespinasse/drawio-export:v4.31.0
+FROM rlespinasse/drawio-export:v4.37.0
 
 ENV PYTHON_VERSION=3.13.0 \
     PYTHONDONTWRITEBYTECODE=1 \
